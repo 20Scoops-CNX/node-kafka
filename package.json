@@ -12,6 +12,9 @@
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "hooks": {
+    "pre-commit": "npm run prettier-format && npm run lint"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saman-waruka/node.js-apache-kafka.git"
@@ -28,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",
+    "husky": "^7.0.1",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
