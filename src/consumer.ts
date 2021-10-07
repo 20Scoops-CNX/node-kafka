@@ -1,11 +1,8 @@
-/* eslint-disable no-undef */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-
 import { Consumer, KafkaClient } from 'kafka-node';
 
-const client = new KafkaClient({ kafkaHost: '192.168.1.108:9092' });
+const client = new KafkaClient({ kafkaHost: 'localhost:9092' });
 const consumer = new Consumer(client, [{ topic: 'topic1', partition: 0 }], {
-  autoCommit: true, //  true คือ ไมื่อได้รับ message จะ  set message เป็น commit message อัตโนมัติ
+  autoCommit: true, //  true คือ เมื่อได้รับ message จะ  set message เป็น commit message อัตโนมัติ
   encoding: 'utf8',
   fromOffset: false // true คือ ดึง message ทั้งหมดตั้งแต่เริ่ม มา   false คือ  ดึงแค่ message ที่ยังไม่ได้ commit
 });
