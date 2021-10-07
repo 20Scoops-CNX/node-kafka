@@ -1,4 +1,4 @@
-# node js kafka 
+# node kafka 
 
 ## How to run 
   1. clone Kafka docker  from  [repository](https://github.com/saman-waruka/kafka-docker-from-original)
