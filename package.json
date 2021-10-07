@@ -37,5 +37,8 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "kafka-node": "^5.0.0"
   }
 }
