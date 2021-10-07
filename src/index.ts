@@ -1,13 +1,13 @@
 import { Producer, KafkaClient, KeyedMessage } from 'kafka-node';
 
-const client = new KafkaClient({ kafkaHost: '192.168.1.21:9092' });
+const client = new KafkaClient({ kafkaHost: '192.168.1.108:9092' });
 const producer = new Producer(client);
 
 const km = new KeyedMessage('key', 'message'),
   payloads = [
     { topic: 'topic1', messages: 'hi', partition: 0 },
     // { topic: 'topic2', messages: ['hello', 'world', km], partition: 1 },
-    { topic: 'topic2', messages: km, partition: 2 },
+    { topic: 'topic2', messages: km, partition: 1 },
     {
       topic: 'topicName',
       messages: ['message body'], // multi messages should be a array, single message can be just a string or a KeyedMessage instance
@@ -20,6 +20,11 @@ const km = new KeyedMessage('key', 'message'),
 console.log({ km });
 producer.on('ready', function () {
   producer.send(payloads, function (err, data) {
+    if (err) {
+      console.error(' errr', err);
+    }
+
+    console.log('sent');
     console.log(data);
   });
 });

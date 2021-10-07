@@ -14,10 +14,10 @@ After started Kafka success  back to this repository
   1. run consumer 
 
   ```
-  node consumer1.js
+  yarn ts-node src/consumer.ts
   ```
 
   2. run producer
   ```
-  node producer1.js
+  yarn ts-node src/producer.ts
   ```

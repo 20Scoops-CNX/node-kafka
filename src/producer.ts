@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { exit } = require('process');
+import { exit } from 'process';
+import { Producer, KafkaClient } from 'kafka-node';
 
-/* eslint-disable no-undef */
-const kafka = require('kafka-node'),
-  Producer = kafka.Producer,
-  client = new kafka.KafkaClient({ kafkaHost: '192.168.1.108:9092' }),
+const client = new KafkaClient({ kafkaHost: '192.168.1.108:9092' }),
   producer = new Producer(client);
 
 const data = {
@@ -14,6 +12,7 @@ const data = {
   k3: 'v3',
   k4: new Date()
 };
+
 const payloads = [
   {
     topic: 'topic1',
@@ -31,7 +30,7 @@ producer.on('ready', function () {
       console.log('error occur while sending', err);
     }
     console.log(data);
-    exit();
+    exit(0);
   });
 });
 
