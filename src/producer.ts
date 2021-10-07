@@ -3,7 +3,7 @@
 import { exit } from 'process';
 import { Producer, KafkaClient } from 'kafka-node';
 
-const client = new KafkaClient({ kafkaHost: '192.168.1.108:9092' }),
+const client = new KafkaClient({ kafkaHost: 'localhost:9092' }),
   producer = new Producer(client);
 
 const data = {
