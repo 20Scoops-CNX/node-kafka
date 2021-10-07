@@ -2,10 +2,11 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 var kafka = require('kafka-node'),
   Consumer = kafka.Consumer,
-  client = new kafka.KafkaClient({ kafkaHost: '192.168.1.21:9092' }),
+  client = new kafka.KafkaClient({ kafkaHost: '192.168.1.108:9092' }),
   consumer = new Consumer(client, [{ topic: 'topic1', partition: 0 }], {
-    autoCommit: false,
-    encoding: 'utf8'
+    autoCommit: true, //  true คือ ไมื่อได้รับ message จะ  set message เป็น commit message อัตโนมัติ
+    encoding: 'utf8',
+    fromOffset: false // true คือ ดึง message ทั้งหมดตั้งแต่เริ่ม มา   false คือ  ดึงแค่ message ที่ยังไม่ได้ commit
   });
 
 consumer.on('message', function (message) {
@@ -20,9 +21,9 @@ consumer.on('offsetOutOfRange', function (err) {
   console.log('offsetOutOfRange occur ', err);
 });
 
-consumer.commit(function (err, data) {
-  if (err) {
-    console.log('commit error', err);
-  }
-  console.log('commit Data', data);
-});
+// consumer.commit(function (err, data) {
+//   if (err) {
+//     console.log('commit error', err);
+//   }
+//   console.log('commit Data', data);
+// });

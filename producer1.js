@@ -5,13 +5,14 @@ const { exit } = require('process');
 /* eslint-disable no-undef */
 const kafka = require('kafka-node'),
   Producer = kafka.Producer,
-  client = new kafka.KafkaClient(),
+  client = new kafka.KafkaClient({ kafkaHost: '192.168.1.108:9092' }),
   producer = new Producer(client);
 
 const data = {
   k1: 'v1',
   k2: 'v2',
-  k3: 'v3'
+  k3: 'v3',
+  k4: new Date()
 };
 const payloads = [
   {
