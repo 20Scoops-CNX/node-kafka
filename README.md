@@ -1,18 +1,38 @@
 # node kafka 
 
-## How to run 
-
-  1. start kafka 
+### Start kafka host
   ```
     docker-compose -up -d
   ```
+-----
+  <br>
 
-  2. run consumer 
+
+## How to run normal Producer
+
+  1. run consumer 
   ```
   yarn ts-node src/consumer.ts
   ```
 
-  3. run producer
+  2. run producer
   ```
   yarn ts-node src/producer.ts
+  ```
+-----
+<br>
+
+## How to run HighlevelProducer 
+
+  1. run consumers
+
+  ```
+  yarn ts-node src/consume-spacific-partition/consumer-topic2-p0.ts
+  yarn ts-node src/consume-spacific-partition/consumer-topic2-p1.ts
+  yarn ts-node src/consume-spacific-partition/consumer-topic2-p2.ts
+  ```
+
+  2. run producer
+  ```
+  yarn ts-node src/highlevel-producer.ts
   ```
