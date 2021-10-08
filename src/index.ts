@@ -18,8 +18,8 @@ const km = new KeyedMessage('key', 'message'),
     }
   ];
 console.log({ km });
-producer.on('ready', function () {
-  producer.send(payloads, function (err, data) {
+producer.on('ready', () => {
+  producer.send(payloads, (err, data) => {
     if (err) {
       console.error(' errr', err);
     }
@@ -29,6 +29,6 @@ producer.on('ready', function () {
   });
 });
 
-producer.on('error', function (err) {
+producer.on('error', err => {
   console.log('error occur', err);
 });

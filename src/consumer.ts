@@ -7,19 +7,19 @@ const consumer = new Consumer(client, [{ topic: 'topic1', partition: 0 }], {
   fromOffset: false // true คือ ดึง message ทั้งหมดตั้งแต่เริ่ม มา   false คือ  ดึงแค่ message ที่ยังไม่ได้ commit
 });
 
-consumer.on('message', function (message) {
+consumer.on('message', message => {
   console.log('consumer1 ==> message', message);
 });
 
-consumer.on('error', function (err) {
+consumer.on('error', err => {
   console.log('error occur ', err);
 });
 
-consumer.on('offsetOutOfRange', function (err) {
+consumer.on('offsetOutOfRange', err => {
   console.log('offsetOutOfRange occur ', err);
 });
 
-// consumer.commit(function (err, data) {
+// consumer.commit( (err, data) =>  {
 //   if (err) {
 //     console.log('commit error', err);
 //   }

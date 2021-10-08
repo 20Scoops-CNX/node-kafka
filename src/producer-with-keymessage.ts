@@ -20,8 +20,8 @@ const payloads = [
   }
 ];
 
-producer.on('ready', function () {
-  producer.send(payloads, function (err, data) {
+producer.on('ready', () => {
+  producer.send(payloads, (err, data) => {
     if (err) {
       console.log('error occur while sending', err);
     }
@@ -30,6 +30,6 @@ producer.on('ready', function () {
   });
 });
 
-producer.on('error', function (err) {
+producer.on('error', err => {
   console.log('error occur', err);
 });

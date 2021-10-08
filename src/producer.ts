@@ -13,27 +13,28 @@ const data = {
   k4: new Date()
 };
 
-const payloads = [
-  {
-    topic: 'topic1',
-    key: 'theKey',
-    messages: JSON.stringify(data),
-    partition: 0,
-    attributes: 2,
-    timestamp: Date.now()
-  }
-];
-
-producer.on('ready', function () {
-  producer.send(payloads, function (err, data) {
+producer.on('ready', () => {
+  console.time('time-usage');
+  const payloads = [
+    {
+      topic: 'topic1',
+      key: 'theKey',
+      messages: JSON.stringify(data),
+      partition: 0,
+      attributes: 2,
+      timestamp: Date.now()
+    }
+  ];
+  producer.send(payloads, (err, data) => {
     if (err) {
       console.log('error occur while sending', err);
     }
     console.log(data);
     exit(0);
   });
+  console.timeEnd('time-usage');
 });
 
-producer.on('error', function (err) {
+producer.on('error', err => {
   console.log('error occur', err);
 });

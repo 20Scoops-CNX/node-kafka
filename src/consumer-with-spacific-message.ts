@@ -14,19 +14,19 @@ const consumer = new Consumer(
   }
 );
 
-consumer.on('message', function (message) {
+consumer.on('message', message => {
   console.log('consumer1 ==> message', message);
 });
 
-consumer.on('error', function (err) {
+consumer.on('error', err => {
   console.log('error occur ', err);
 });
 
-consumer.on('offsetOutOfRange', function (err) {
+consumer.on('offsetOutOfRange', err => {
   console.log('offsetOutOfRange occur ', err);
 });
 
-// consumer.commit(function (err, data) {
+// consumer.commit( (err, data) =>  {
 //   if (err) {
 //     console.log('commit error', err);
 //   }
