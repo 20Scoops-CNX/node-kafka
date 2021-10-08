@@ -8,9 +8,6 @@ const client = new KafkaClient({ kafkaHost: 'localhost:9092' }),
   producer = new HighLevelProducer(client);
 
 const data = {
-  k1: 'v1',
-  k2: 'v2',
-  k3: 'v3',
   k4: new Date()
 };
 
@@ -35,6 +32,13 @@ producer.on('ready', () => {
     {
       topic: 'topic2',
       key: 'theKey3',
+      messages: JSON.stringify(data),
+      attributes: 2,
+      timestamp: Date.now()
+    },
+    {
+      topic: 'topic2',
+      key: 'theKey4',
       messages: JSON.stringify(data),
       attributes: 2,
       timestamp: Date.now()

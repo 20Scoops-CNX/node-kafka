@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// This example demonstrate HiglevelProducer to send message by  Round-robins produce requests to the available topic partitions
 
 import { exit } from 'process';
-import { KafkaClient, HighLevelProducer } from 'kafka-node';
+import { Producer, KafkaClient } from 'kafka-node';
 
 const client = new KafkaClient({ kafkaHost: 'localhost:9092' }),
-  producer = new HighLevelProducer(client);
+  producer = new Producer(client);
 
 const data = {
   k1: 'v1',
@@ -16,12 +15,12 @@ const data = {
 
 producer.on('ready', () => {
   console.time('time-usage');
-
   const payloads = [
     {
       topic: 'topic2',
       key: 'theKey',
       messages: JSON.stringify(data),
+      partition: 0,
       attributes: 2,
       timestamp: Date.now()
     },
@@ -29,6 +28,7 @@ producer.on('ready', () => {
       topic: 'topic2',
       key: 'theKey2',
       messages: JSON.stringify(data),
+      partition: 1,
       attributes: 2,
       timestamp: Date.now()
     },
@@ -36,6 +36,7 @@ producer.on('ready', () => {
       topic: 'topic2',
       key: 'theKey3',
       messages: JSON.stringify(data),
+      partition: 2,
       attributes: 2,
       timestamp: Date.now()
     }
@@ -47,7 +48,6 @@ producer.on('ready', () => {
     console.log(data);
     exit(0);
   });
-
   console.timeEnd('time-usage');
 });
 
